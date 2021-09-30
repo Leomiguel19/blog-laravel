@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="container py-8">
-        <h1 class="text-lg text-gray-600">{{$post->name}}</h1>
+        <h1 class="text-4xl font-bold text-gray-600">{{$post->name}}</h1>
 
         <div class="text-lg text-gray-600 mb-2">
             {{$post->extract}}
@@ -27,7 +27,7 @@
                     @foreach ($similares as $similar)
                         <li class="mb-4">
                             <a class="flex" href="{{route('posts.show', $similar)}}">
-                                <img class="w-36 h-20 object-cover object-center" src="{{Storage::url($similar->image->url)}}" alt="">
+                                <img class="w-40 h-25 object-cover object-center" src="{{Storage::url($similar->image->url)}}" alt="">
                                 <span class="ml-2 text-gray-600">{{$similar->name}}</span>
                             </a>
                         </li>

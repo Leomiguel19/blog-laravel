@@ -17,7 +17,7 @@ class PostSeeder extends Seeder
     public function run()
     {
         // Storage::deleteDirectory('posts');
-        $posts = Post::factory(100)->create();   
+        $posts = Post::factory(60)->create();   
         
         foreach($posts as $post){
             Image::factory(1)->create([

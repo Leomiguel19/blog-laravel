@@ -3,6 +3,11 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
+
+    @can('admin.categories.create')
+        <a href="{{route('admin.categories.create')}}" class="btn btn-secondary btn-sm float-right">Agregar Categoría</a>        
+    @endcan
+
     <h1>Lista de Categorías</h1>
 @stop
 
@@ -14,11 +19,6 @@
         </div>
     @endif
     <div class="card">
-
-        <div class="card-header">
-            <a href="{{route('admin.categories.create')}}" class="btn btn-secondary">Agregar Categoría</a>
-        </div>
-        
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
@@ -35,15 +35,19 @@
                             <td>{{$category->id}}</td>
                             <td>{{$category->name}}</td>
                             <td width="10px">
-                                <a class="btn btn-primary btn-sm" href="{{route('admin.categories.edit', $category)}}">Editar</a>
+                                @can('admin.categories.edit')
+                                    <a class="btn btn-primary btn-sm" href="{{route('admin.categories.edit', $category)}}">Editar</a>                                    
+                                @endcan
                             </td>
                             <td width="10px">
-                                <form action="{{route('admin.categories.destroy', $category)}}" method="POST">
-                                    @csrf
-                                    @method('delete')
+                                @can('admin.categories.destroy')
+                                    <form action="{{route('admin.categories.destroy', $category)}}" method="POST">
+                                        @csrf
+                                        @method('delete')
 
-                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                </form>
+                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                    </form>                                    
+                                @endcan
                             </td>
                         </tr>
                     @endforeach
